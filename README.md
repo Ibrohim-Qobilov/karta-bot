@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.png" alt="Karta Bot — bank kartalaringiz bitta xavfsiz joyda" width="800">
+</p>
+
 # 💳 Karta Bot
 
 Bank kartalari ma'lumotlarini xavfsiz saqlash va tez topish uchun mo'ljallangan Telegram bot. Karta raqamlari shifrlab saqlanadi, kirish esa PIN-kod bilan himoyalanadi.
@@ -68,6 +72,14 @@ python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().d
 python main.py
 ```
 
+### 5. Bot profilini rasmiylashtirish (ixtiyoriy)
+
+```bash
+python set_bot_info.py   # nom va tavsiflarni 8 tilda o'rnatadi
+```
+
+Profil rasmi, tavsif rasmi va to'liq yo'riqnoma: [BOTFATHER.md](BOTFATHER.md)
+
 ## 💬 Buyruqlar
 
 | Buyruq | Vazifasi |
@@ -84,6 +96,8 @@ karta_bot/
 ├── main.py            # Botni ishga tushirish
 ├── config.py          # .env dan sozlamalarni o'qish
 ├── states.py          # FSM holatlari
+├── set_bot_info.py    # BotFather nom/tavsiflarini 8 tilda o'rnatish
+├── assets/            # Bot rasmi, banner (generate.py bilan yaratilgan)
 ├── database/          # SQLite bilan ishlash, shifrlash
 ├── handlers/          # Buyruq va tugma ishlovchilari
 ├── keyboards/         # Telegram klaviaturalari

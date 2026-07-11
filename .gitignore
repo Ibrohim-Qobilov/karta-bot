@@ -4,6 +4,9 @@
 # Ma'lumotlar bazasi
 *.db
 
+# macOS
+.DS_Store
+
 # Python
 __pycache__/
 *.py[cod]
