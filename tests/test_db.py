@@ -73,6 +73,11 @@ class DBTest(unittest.IsolatedAsyncioTestCase):
         await db.set_lang(999, "ru")
         self.assertEqual(await db.get_lang(999), "ru")
 
+    async def test_user_exists_after_lang_chosen(self):
+        self.assertFalse(await db.user_exists(777))  # yangi foydalanuvchi
+        await db.set_lang(777, "uz")
+        self.assertTrue(await db.user_exists(777))
+
     async def test_pin_set_verify_clear(self):
         await db.set_pin(5, "1234")
         self.assertTrue(await db.has_pin(5))

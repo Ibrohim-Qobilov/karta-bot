@@ -1,5 +1,6 @@
 from .db import (
     init_db,
+    user_exists,
     set_lang,
     get_lang,
     set_pin,
@@ -19,6 +20,7 @@ from .db import (
 
 __all__ = [
     "init_db",
+    "user_exists",
     "set_lang",
     "get_lang",
     "set_pin",

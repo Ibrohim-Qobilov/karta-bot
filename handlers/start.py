@@ -13,8 +13,13 @@ router = Router()
 
 @router.message(Command("start"))
 async def cmd_start(message: Message, state: FSMContext):
+    """Birinchi kirishda til so'raladi, keyin saqlangan tilda asosiy menyu."""
     await state.clear()
-    await message.answer(t("uz", "choose_lang"), reply_markup=lang_kb())
+    if await db.user_exists(message.from_user.id):
+        lang = await db.get_lang(message.from_user.id)
+        await message.answer(t(lang, "start"), reply_markup=main_menu(lang))
+    else:
+        await message.answer(t("uz", "choose_lang"), reply_markup=lang_kb())
 
 
 @router.callback_query(F.data.startswith("lang:"))

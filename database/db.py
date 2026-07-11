@@ -44,6 +44,12 @@ async def init_db():
 
 # ---------- til ----------
 
+async def user_exists(user_id):
+    async with aiosqlite.connect(DB_PATH) as db:
+        async with db.execute("SELECT 1 FROM users WHERE user_id = ?", (user_id,)) as cur:
+            return await cur.fetchone() is not None
+
+
 async def set_lang(user_id, lang):
     async with aiosqlite.connect(DB_PATH) as db:
         await db.execute(
