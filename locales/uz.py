@@ -74,4 +74,7 @@ TEXTS = {
     "import_bad_file": "❌ Fayl noto'g'ri yoki buzilgan. To'g'ri karta_backup.json yuboring.",
     "import_done": "✅ Tiklandi.\nQo'shildi: {added}\nO'tkazib yuborildi: {skipped}",
     "error": "⚠️ Xatolik yuz berdi. Birozdan so'ng qayta urinib ko'ring.",
+    "set_security_btn": "🔒 Xavfsizlik siyosati",
+    "security_full_btn": "📖 To'liq o'qish",
+    "security_policy": "🔒 Xavfsizlik siyosati\n\n• Karta raqamlari bazada shifrlangan holda saqlanadi.\n• CVV va amal muddati saqlanmaydi — faqat raqam, nom va egasi.\n• Ma'lumotlaringiz uchinchi tomonga uzatilmaydi.\n\nPIN himoyasi:\n• Sozlamalar → PIN orqali 4 xonali kod o'rnating.\n• 1 daqiqadan so'ng kod avtomatik qayta so'raladi.\n• 5 marta xato kiritilsa — vaqtincha bloklanadi.\n\n⚠️ Muhim:\n• Zaxira faylida raqamlar OCHIQ bo'ladi — birovga yubormang.\n• Inline orqali yuborilgan karta o'sha chatda ko'rinadi.\n• Telegram akkauntingizga kira olgan har kim kartalarni ko'radi — akkauntingizni himoyalang.",
 }

@@ -42,6 +42,7 @@ async def set_commands(bot):
         BotCommand(command="card", description="Kartalarim / My cards"),
         BotCommand(command="add", description="Karta qo'shish / Add card"),
         BotCommand(command="start", description="Boshlash / Start"),
+        BotCommand(command="security", description="Xavfsizlik / Security"),
     ])
 
 

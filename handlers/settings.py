@@ -1,7 +1,10 @@
 """Sozlamalar menyusi: til va PIN-kod."""
 from aiogram import Router, F
+from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import (
+    Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton,
+)
 
 import database as db
 from keyboards import lang_kb, main_menu, pin_manage_kb
@@ -12,6 +15,16 @@ from .common import show_cards
 from .security import unlock, lock, verify_with_limit
 
 router = Router()
+
+# To'liq maxfiylik siyosati (Telegraph).
+PRIVACY_URL = "https://telegra.ph/Karta-Bot--Maxfiylik-siyosati-07-11"
+
+
+def _security_kb(lang):
+    """Siyosat matni ostidagi «To'liq o'qish» (Telegraph) tugmasi."""
+    return InlineKeyboardMarkup(inline_keyboard=[[
+        InlineKeyboardButton(text=t(lang, "security_full_btn"), url=PRIVACY_URL),
+    ]])
 
 
 def _valid_pin(text):
@@ -26,6 +39,21 @@ async def open_lang(call: CallbackQuery):
     lang = await db.get_lang(call.from_user.id)
     await call.message.edit_text(t(lang, "choose_lang"), reply_markup=lang_kb())
     await call.answer()
+
+
+@router.callback_query(F.data == "set:security")
+async def open_security(call: CallbackQuery):
+    """Xavfsizlik siyosati matnini ko'rsatadi."""
+    lang = await db.get_lang(call.from_user.id)
+    await call.message.answer(t(lang, "security_policy"), reply_markup=_security_kb(lang))
+    await call.answer()
+
+
+@router.message(Command("security", "privacy"))
+async def cmd_security(message: Message):
+    """/security yoki /privacy — xavfsizlik siyosatini ko'rsatadi."""
+    lang = await db.get_lang(message.from_user.id)
+    await message.answer(t(lang, "security_policy"), reply_markup=_security_kb(lang))
 
 
 @router.callback_query(F.data == "set:pin")

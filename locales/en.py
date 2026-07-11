@@ -74,4 +74,7 @@ TEXTS = {
     "import_bad_file": "❌ Invalid or corrupted file. Send a valid karta_backup.json.",
     "import_done": "✅ Restored.\nAdded: {added}\nSkipped: {skipped}",
     "error": "⚠️ Something went wrong. Please try again in a moment.",
+    "set_security_btn": "🔒 Security policy",
+    "security_full_btn": "📖 Read full policy",
+    "security_policy": "🔒 Security policy\n\n• Your card numbers are stored encrypted in the database.\n• CVV and expiry date are not stored — only the number, label and holder.\n• Your data is never sent to any third party.\n\nPIN protection:\n• Set a 4-digit code via Settings → PIN.\n• It is re-requested automatically after 1 minute.\n• After 5 wrong tries, access is temporarily blocked.\n\n⚠️ Important:\n• The backup file contains card numbers in PLAIN text — don't forward it.\n• A card sent via inline is visible in that chat.\n• Anyone with access to your Telegram account can see your cards — protect your account.",
 }

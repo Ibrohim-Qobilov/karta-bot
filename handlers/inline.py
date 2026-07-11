@@ -12,14 +12,11 @@ from aiogram.types import (
     InlineQueryResultArticle,
     InputTextMessageContent,
     InlineQueryResultsButton,
-    InlineKeyboardMarkup,
-    InlineKeyboardButton,
-    CopyTextButton,
 )
 
 import database as db
 from locales import t
-from utils.text import mask, card_brand, only_digits
+from utils.text import mask, card_brand
 
 router = Router()
 
@@ -40,13 +37,6 @@ async def inline_cards(query: InlineQuery):
         number = f"<code>{mask(c['number'])}</code>"  # bosilsa nusxalanadi
         # Yuborilganda: karta turi (bo'lsa) + raqam.
         text = f"{brand}\n{number}" if brand else number
-        # Yuborilgan xabar ostida bir bosishli nusxa tugmasi.
-        copy_kb = InlineKeyboardMarkup(inline_keyboard=[[
-            InlineKeyboardButton(
-                text=t(lang, "copy_btn"),
-                copy_text=CopyTextButton(text=only_digits(c["number"])),
-            )
-        ]])
         results.append(InlineQueryResultArticle(
             id=str(c["id"]),
             title=c["name"],
@@ -55,7 +45,6 @@ async def inline_cards(query: InlineQuery):
                 message_text=text,
                 parse_mode="HTML",
             ),
-            reply_markup=copy_kb,
         ))
 
     # Karta bo'lmasa — botni ochib qo'shishga taklif qiluvchi tugma.

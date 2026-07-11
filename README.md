@@ -75,6 +75,7 @@ python main.py
 | `/start` | Botni ishga tushirish va til tanlash |
 | `/karta` yoki `/card` | Kartalar ro'yxati |
 | `/add` | Yangi karta qo'shish |
+| `/security` yoki `/privacy` | Xavfsizlik / maxfiylik siyosati |
 
 ## 📁 Loyiha tuzilishi
 
@@ -96,6 +97,9 @@ karta_bot/
 - Karta raqamlari **hech qachon ochiq saqlanmaydi** — faqat shifrlangan holda
 - PIN-kod **sha256 + user_id tuz** bilan hashlanadi, ochiq saqlanmaydi
 - `.env` va `*.db` fayllari `.gitignore` orqali repozitoriyga tushmaydi
+
+📄 To'liq maxfiylik siyosati: [telegra.ph/Karta-Bot--Maxfiylik-siyosati-07-11](https://telegra.ph/Karta-Bot--Maxfiylik-siyosati-07-11)
+🛡️ Texnik xavfsizlik hujjati: [SECURITY.md](SECURITY.md)
 
 ## 📝 Litsenziya
 

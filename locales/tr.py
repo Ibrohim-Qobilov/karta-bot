@@ -75,4 +75,7 @@ TEXTS = {
     "import_bad_file": "❌ Dosya geçersiz veya bozuk. Geçerli bir karta_backup.json gönderin.",
     "import_done": "✅ Geri yüklendi.\nEklendi: {added}\nAtlandı: {skipped}",
     "error": "⚠️ Bir hata oluştu. Lütfen birazdan tekrar deneyin.",
+    "set_security_btn": "🔒 Güvenlik politikası",
+    "security_full_btn": "📖 Tamamını oku",
+    "security_policy": "🔒 Güvenlik politikası\n\n• Kart numaraları veritabanında şifreli olarak saklanır.\n• CVV ve son kullanma tarihi saklanmaz — yalnızca numara, ad ve kart sahibi.\n• Verileriniz üçüncü taraflara aktarılmaz.\n\nPIN koruması:\n• Ayarlar → PIN üzerinden 4 haneli bir kod belirleyin.\n• 1 dakika sonra kod otomatik olarak tekrar istenir.\n• 5 yanlış denemeden sonra geçici olarak engellenir.\n\n⚠️ Önemli:\n• Yedek dosyasında numaralar AÇIK şekilde bulunur — kimseye iletmeyin.\n• Inline ile gönderilen kart o sohbette görünür.\n• Telegram hesabınıza erişebilen herkes kartları görebilir — hesabınızı koruyun.",
 }

@@ -135,5 +135,6 @@ def settings_kb(lang, has_pin, unlocked=False):
             InlineKeyboardButton(text=t(lang, "set_export_btn"), callback_data="set:export"),
             InlineKeyboardButton(text=t(lang, "set_import_btn"), callback_data="set:import"),
         ],
+        [InlineKeyboardButton(text=t(lang, "set_security_btn"), callback_data="set:security")],
     ]
     return InlineKeyboardMarkup(inline_keyboard=rows)
