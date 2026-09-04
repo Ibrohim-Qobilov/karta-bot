@@ -12,11 +12,14 @@ from aiogram.types import (
     InlineQueryResultArticle,
     InputTextMessageContent,
     InlineQueryResultsButton,
+    InlineKeyboardMarkup,
+    InlineKeyboardButton,
+    CopyTextButton,
 )
 
 import database as db
 from locales import t
-from utils.text import mask, card_brand
+from utils.text import mask, card_brand, only_digits
 
 router = Router()
 
@@ -34,11 +37,8 @@ async def inline_cards(query: InlineQuery):
     results = []
     for c in cards[:50]:
         brand = card_brand(c["number"])
-        # Karta raqami spoiler + code ichida:
-        # 1. Chatdan tashqarida xiralashgan spoiler bo'ladi
-        # 2. Bosilganda ochiladi va bitta bosishda nusxalanadi (code)
-        # Nomi esa ochiq qoladi: "🔵 Uzcard"
-        spoilered_number = f"<tg-spoiler><code>{mask(c['number'])}</code></tg-spoiler>"
+        # Karta raqami toza spoiler ichida (code tegisiz, chunki code tegi bo'lsa Telegram spoilerni xiralashtirmaydi)
+        spoilered_number = f"<tg-spoiler>{mask(c['number'])}</tg-spoiler>"
         text = f"{brand}\n{spoilered_number}" if brand else spoilered_number
         results.append(InlineQueryResultArticle(
             id=str(c["id"]),
@@ -48,6 +48,12 @@ async def inline_cards(query: InlineQuery):
                 message_text=text,
                 parse_mode="HTML",
             ),
+            reply_markup=InlineKeyboardMarkup(inline_keyboard=[[
+                InlineKeyboardButton(
+                    text=t(lang, "copy_btn"),
+                    copy_text=CopyTextButton(text=only_digits(c["number"])),
+                )
+            ]]),
         ))
 
     # Karta bo'lmasa — botni ochib qo'shishga taklif qiluvchi tugma.

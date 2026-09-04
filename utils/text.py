@@ -57,7 +57,7 @@ def card_brand(number):
 
 
 def card_text(c):
-    """Karta matni (HTML). Raqam spoiler + <code> ichida — chatdan tashqarida ko'rinmaydi, bosilsa nusxalanadi.
+    """Karta matni (HTML). Raqam spoiler ichida — chatdan tashqarida ko'rinmaydi.
 
     Nom/egasi HTML uchun ekranlanadi (< > & belgilaridan himoya).
     Ishlatilganda `parse_mode="HTML"` bilan yuborilishi shart.
@@ -68,4 +68,4 @@ def card_text(c):
     title = f"💳 {name}"
     if brand:
         title += f" · {brand}"
-    return f"{title}\n{holder}\n<tg-spoiler><code>{mask(c['number'])}</code></tg-spoiler>"
+    return f"{title}\n{holder}\n<tg-spoiler>{mask(c['number'])}</tg-spoiler>"

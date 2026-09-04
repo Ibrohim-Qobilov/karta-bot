@@ -17,6 +17,8 @@ os.environ["BOT_TOKEN"] = "test:token"
 os.environ["ENCRYPTION_KEY"] = Fernet.generate_key().decode()
 _TMP_DB = os.path.join(tempfile.gettempdir(), "karta_test.db")
 os.environ["DB_PATH"] = _TMP_DB
+os.environ["TURSO_DATABASE_URL"] = ""
+os.environ["TURSO_AUTH_TOKEN"] = ""
 
 import database as db  # noqa: E402
 
