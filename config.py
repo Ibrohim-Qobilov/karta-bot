@@ -19,3 +19,5 @@ def _required(name):
 BOT_TOKEN = _required("BOT_TOKEN")
 ENCRYPTION_KEY = _required("ENCRYPTION_KEY")
 DB_PATH = os.getenv("DB_PATH", "cards.db")
+TURSO_DATABASE_URL = os.getenv("TURSO_DATABASE_URL", "")
+TURSO_AUTH_TOKEN = os.getenv("TURSO_AUTH_TOKEN", "")

@@ -75,7 +75,7 @@ class CardTextTest(unittest.TestCase):
         self.assertIn("💳 Asosiy", res)
         self.assertIn("Ali Valiyev", res)
         self.assertIn("🔵 Uzcard", res)
-        self.assertIn("<tg-spoiler>8600 1234 5678 9012</tg-spoiler>", res)
+        self.assertIn("<tg-spoiler><code>8600 1234 5678 9012</code></tg-spoiler>", res)
 
 
 if __name__ == "__main__":
