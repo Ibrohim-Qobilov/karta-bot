@@ -5,7 +5,7 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from utils.text import card_brand, luhn_valid, mask, only_digits  # noqa: E402
+from utils.text import card_brand, luhn_valid, mask, only_digits, card_text  # noqa: E402
 
 
 class LuhnTest(unittest.TestCase):
@@ -62,6 +62,20 @@ class CardBrandTest(unittest.TestCase):
 
     def test_unknown(self):
         self.assertIsNone(card_brand("1234567890123456"))
+
+
+class CardTextTest(unittest.TestCase):
+    def test_card_text_has_spoiler(self):
+        card = {
+            "name": "Asosiy",
+            "holder": "Ali Valiyev",
+            "number": "8600123456789012",
+        }
+        res = card_text(card)
+        self.assertIn("💳 Asosiy", res)
+        self.assertIn("Ali Valiyev", res)
+        self.assertIn("🔵 Uzcard", res)
+        self.assertIn("<tg-spoiler><code>8600 1234 5678 9012</code></tg-spoiler>", res)
 
 
 if __name__ == "__main__":

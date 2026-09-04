@@ -35,8 +35,9 @@ async def inline_cards(query: InlineQuery):
     for c in cards[:50]:
         brand = card_brand(c["number"])
         number = f"<code>{mask(c['number'])}</code>"  # bosilsa nusxalanadi
-        # Yuborilganda: karta turi (bo'lsa) + raqam.
-        text = f"{brand}\n{number}" if brand else number
+        # Yuborilganda: karta turi (bo'lsa) + raqam — chatdan tashqarida ko'rinmasligi uchun to'liq spoiler bilan
+        content = f"{brand}\n{number}" if brand else number
+        text = f"<tg-spoiler>{content}</tg-spoiler>"
         results.append(InlineQueryResultArticle(
             id=str(c["id"]),
             title=c["name"],
