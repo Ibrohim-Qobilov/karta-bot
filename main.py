@@ -36,6 +36,22 @@ async def on_error(event: ErrorEvent):
     return True
 
 
+import os
+from aiohttp import web
+
+async def start_health_server():
+    port = int(os.environ.get("PORT", 8080))
+    app = web.Application()
+    app.router.add_get("/", lambda r: web.Response(text="Tez Karta Bot is live! 💳"))
+    app.router.add_get("/health", lambda r: web.Response(text="OK"))
+    runner = web.AppRunner(app)
+    await runner.setup()
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
+    logger.info("Health server listening on port %d", port)
+    return runner
+
+
 async def set_commands(bot):
     await bot.set_my_commands([
         BotCommand(command="karta", description="Kartalarim / My cards"),
@@ -61,8 +77,16 @@ async def main():
 
     await set_commands(bot)
 
+    web_runner = None
+    if os.environ.get("PORT"):
+        web_runner = await start_health_server()
+
     logger.info("Bot ishga tushdi ✅")
-    await dp.start_polling(bot)
+    try:
+        await dp.start_polling(bot)
+    finally:
+        if web_runner:
+            await web_runner.cleanup()
 
 
 if __name__ == "__main__":
