@@ -4,15 +4,35 @@
 
 # 💳 Karta Bot
 
+<p align="center">
+  <a href="https://t.me/tezkartabot" target="_blank">
+    <img src="https://img.shields.io/badge/Telegram_Bot-@tezkartabot-229ED9?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram Bot">
+  </a>
+  <a href="https://render.com" target="_blank">
+    <img src="https://img.shields.io/badge/Render-24%2F7_Live-46E3B7?style=for-the-badge&logo=render&logoColor=black" alt="Render">
+  </a>
+  <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.11">
+  <img src="https://img.shields.io/badge/Aiogram-3.x-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="Aiogram 3">
+  <img src="https://img.shields.io/badge/Security-AES--256_Fernet-red?style=for-the-badge&logo=auth0&logoColor=white" alt="Security">
+  <img src="https://img.shields.io/badge/Unit_Tests-17_Passing-success?style=for-the-badge" alt="17 Tests">
+  <img src="https://img.shields.io/badge/Languages-8_Supported-orange?style=for-the-badge" alt="8 Languages">
+</p>
+
+<p align="center">
+  <a href="https://t.me/tezkartabot" target="_blank">
+    <img src="https://img.shields.io/badge/👉_Telegram'da_Ishga_Tushirish-229ED9?style=for-the-badge&logo=telegram&logoColor=white" alt="Use Bot">
+  </a>
+</p>
+
 Bank kartalari ma'lumotlarini xavfsiz saqlash va tez topish uchun mo'ljallangan Telegram bot. Karta raqamlari shifrlab saqlanadi, kirish esa PIN-kod bilan himoyalanadi.
 
 ## ✨ Imkoniyatlar
 
-- **🔐 Shifrlash** — karta raqamlari bazaga Fernet (AES) bilan shifrlab yoziladi, ochiq holda saqlanmaydi
+- **🔐 Shifrlash** — karta raqamlari bazaga Fernet (AES-256) bilan shifrlab yoziladi, ochiq holda saqlanmaydi
 - **📌 PIN-himoya** — kartalarni ko'rishdan oldin PIN so'raladi; 5 marta xato kiritilsa vaqtincha bloklanadi (brute-force himoyasi)
 - **🌍 8 til** — o'zbekcha (lotin/kirill), ruscha, inglizcha, qozoqcha, tojikcha, turkcha, qirg'izcha
 - **➕ To'liq boshqaruv** — karta qo'shish, tahrirlash (nomi, raqami, egasi), o'chirish
-- **🔎 Inline qidiruv** — kartalarni istalgan chatda `@bot_username` orqali topish va yuborish
+- **🔎 Inline qidiruv** — kartalarni istalgan chatda `@tezkartabot` orqali topish va yuborish
 - **💾 Zaxira nusxa** — kartalarni eksport/import qilish
 - **🛡️ Barqarorlik** — ushlanmagan xatolar botni yiqitmaydi, jurnalga yoziladi
 
@@ -115,6 +135,20 @@ karta_bot/
 📄 To'liq maxfiylik siyosati: [telegra.ph/Karta-Bot--Maxfiylik-siyosati-07-11](https://telegra.ph/Karta-Bot--Maxfiylik-siyosati-07-11)
 🛡️ Texnik xavfsizlik hujjati: [SECURITY.md](SECURITY.md)
 
+## 🧪 Testlar
+
+Barcha 17 ta unit-testlarni ishga tushirish:
+
+```bash
+python3 -m unittest discover -s tests
+```
+
+## 📬 Aloqa va Takliflar
+
+Savollar, takliflar yoki xatolar haqida xabar berish uchun:
+- Telegram aloqa boti: [@Ibrohim_qobilov_aloqabot](https://t.me/Ibrohim_qobilov_aloqabot)
+- Dasturchi profili: [Ibrohim Qobilov](https://github.com/Ibrohim-Qobilov)
+
 ## 📝 Litsenziya
 
-Shaxsiy foydalanish uchun.
+MIT License. Shaxsiy va ochiq foydalanish uchun.
