@@ -49,6 +49,7 @@ TEXTS = {
     "no": "❌ Жок",
     "settings_menu": "⚙️ Жөндөөлөр\n\nБөлүмдү тандаңыз 👇",
     "set_lang_btn": "🌐 Тил",
+    "feedback_btn": "💬 Сунуштар жана пикирлер",
     "set_pin_on_btn": "🔐 PIN коюу",
     "set_pin_off_btn": "🔓 PIN өчүрүү",
     "pin_set_prompt": "🔐 Жаңы 4 орундуу PIN киргизиңиз:",

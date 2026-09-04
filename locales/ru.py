@@ -45,6 +45,7 @@ TEXTS = {
     "no": "❌ Нет",
     "settings_menu": "⚙️ Настройки\n\nВыберите раздел 👇",
     "set_lang_btn": "🌐 Язык",
+    "feedback_btn": "💬 Отзывы и предложения",
     "set_pin_on_btn": "🔐 Установить PIN",
     "set_pin_btn": "🔒 PIN",
     "pin_manage_title": "🔒 Настройки PIN:",

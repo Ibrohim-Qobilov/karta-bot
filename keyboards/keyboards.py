@@ -136,5 +136,6 @@ def settings_kb(lang, has_pin, unlocked=False):
             InlineKeyboardButton(text=t(lang, "set_import_btn"), callback_data="set:import"),
         ],
         [InlineKeyboardButton(text=t(lang, "set_security_btn"), callback_data="set:security")],
+        [InlineKeyboardButton(text=t(lang, "feedback_btn"), url="https://t.me/Ibrohim_qobilov_aloqabot")],
     ]
     return InlineKeyboardMarkup(inline_keyboard=rows)

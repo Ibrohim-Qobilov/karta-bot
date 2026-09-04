@@ -49,6 +49,7 @@ TEXTS = {
     "no": "❌ Жоқ",
     "settings_menu": "⚙️ Баптаулар\n\nБөлімді таңдаңыз 👇",
     "set_lang_btn": "🌐 Тіл",
+    "feedback_btn": "💬 Ұсыныстар мен пікірлер",
     "set_pin_on_btn": "🔐 PIN орнату",
     "set_pin_off_btn": "🔓 PIN жою",
     "pin_set_prompt": "🔐 Жаңа 4 таңбалы PIN енгізіңіз:",

@@ -45,6 +45,7 @@ TEXTS = {
     "no": "❌ Yo'q",
     "settings_menu": "⚙️ Sozlamalar\n\nKerakli bo'limni tanlang 👇",
     "set_lang_btn": "🌐 Til",
+    "feedback_btn": "💬 Taklif va murojaat",
     "set_pin_on_btn": "🔐 PIN qo'yish",
     "set_pin_btn": "🔒 PIN",
     "pin_manage_title": "🔒 PIN sozlamalari:",

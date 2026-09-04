@@ -49,6 +49,7 @@ TEXTS = {
     "no": "❌ Не",
     "settings_menu": "⚙️ Танзимот\n\nБахшро интихоб кунед 👇",
     "set_lang_btn": "🌐 Забон",
+    "feedback_btn": "💬 Пешниҳод ва муроҷиат",
     "set_pin_on_btn": "🔐 Гузоштани PIN",
     "set_pin_off_btn": "🔓 Нест кардани PIN",
     "pin_set_prompt": "🔐 PIN-и нави 4-рақамаро ворид кунед:",

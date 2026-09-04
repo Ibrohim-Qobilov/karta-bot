@@ -49,6 +49,7 @@ TEXTS = {
     "no": "❌ Hayır",
     "settings_menu": "⚙️ Ayarlar\n\nBir bölüm seçin 👇",
     "set_lang_btn": "🌐 Dil",
+    "feedback_btn": "💬 Geri bildirim ve Öneri",
     "set_pin_on_btn": "🔐 PIN belirle",
     "set_pin_off_btn": "🔓 PIN kaldır",
     "pin_set_prompt": "🔐 Yeni 4 haneli PIN girin:",

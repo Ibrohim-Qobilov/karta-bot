@@ -49,6 +49,7 @@ TEXTS = {
     "no": "❌ Йўқ",
     "settings_menu": "⚙️ Созламалар\n\nКеракли бўлимни танланг 👇",
     "set_lang_btn": "🌐 Тил",
+    "feedback_btn": "💬 Таклиф ва мурожаат",
     "set_pin_on_btn": "🔐 PIN ўрнатиш",
     "set_pin_off_btn": "🔓 PIN ўчириш",
     "pin_set_prompt": "🔐 Янги 4 хонали PIN киритинг:",
