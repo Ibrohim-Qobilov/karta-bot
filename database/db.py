@@ -1,8 +1,14 @@
-"""SQLite va Turso bilan ishlash. Karta raqami Fernet bilan shifrlab saqlanadi."""
+"""SQLite, Turso va Supabase (PostgreSQL) bilan ishlash. Karta raqami Fernet bilan shifrlab saqlanadi."""
 import hashlib
 import logging
+import re
 
 import aiosqlite
+try:
+    import asyncpg
+except ImportError:
+    asyncpg = None
+
 try:
     import libsql_client
 except ImportError:
@@ -10,10 +16,16 @@ except ImportError:
 
 from cryptography.fernet import Fernet, InvalidToken
 
-from config import DB_PATH, ENCRYPTION_KEY, TURSO_DATABASE_URL, TURSO_AUTH_TOKEN
+from config import DB_PATH, ENCRYPTION_KEY, TURSO_DATABASE_URL, TURSO_AUTH_TOKEN, SUPABASE_DB_URL
 
 logger = logging.getLogger(__name__)
 fernet = Fernet(ENCRYPTION_KEY.encode())
+
+_pg_pool = None
+
+
+def _is_supabase():
+    return bool(SUPABASE_DB_URL and asyncpg)
 
 
 def _is_turso():
@@ -24,8 +36,40 @@ def _get_turso_url():
     return TURSO_DATABASE_URL.replace("libsql://", "https://")
 
 
+async def get_pg_pool():
+    global _pg_pool
+    if _pg_pool is None and _is_supabase():
+        _pg_pool = await asyncpg.create_pool(
+            dsn=SUPABASE_DB_URL,
+            min_size=1,
+            max_size=10,
+            timeout=10,
+            command_timeout=10,
+        )
+    return _pg_pool
+
+
+def _to_pg(sql: str) -> str:
+    # Jadval nomlari: users -> karta_users, cards -> karta_cards
+    sql = re.sub(r"\busers\b", "karta_users", sql)
+    sql = re.sub(r"\bcards\b", "karta_cards", sql)
+    count = 0
+
+    def repl(m):
+        nonlocal count
+        count += 1
+        return f"${count}"
+
+    return re.sub(r"\?", repl, sql)
+
+
 async def _execute(sql, params=()):
-    if _is_turso():
+    if _is_supabase():
+        pool = await get_pg_pool()
+        pg_sql = _to_pg(sql)
+        async with pool.acquire() as conn:
+            return await conn.execute(pg_sql, *params)
+    elif _is_turso():
         url = _get_turso_url()
         async with libsql_client.create_client(url=url, auth_token=TURSO_AUTH_TOKEN) as client:
             return await client.execute(sql, list(params))
@@ -37,7 +81,13 @@ async def _execute(sql, params=()):
 
 
 async def _fetch_one(sql, params=()):
-    if _is_turso():
+    if _is_supabase():
+        pool = await get_pg_pool()
+        pg_sql = _to_pg(sql)
+        async with pool.acquire() as conn:
+            row = await conn.fetchrow(pg_sql, *params)
+            return tuple(row) if row else None
+    elif _is_turso():
         url = _get_turso_url()
         async with libsql_client.create_client(url=url, auth_token=TURSO_AUTH_TOKEN) as client:
             rs = await client.execute(sql, list(params))
@@ -49,7 +99,13 @@ async def _fetch_one(sql, params=()):
 
 
 async def _fetch_all(sql, params=()):
-    if _is_turso():
+    if _is_supabase():
+        pool = await get_pg_pool()
+        pg_sql = _to_pg(sql)
+        async with pool.acquire() as conn:
+            rows = await conn.fetch(pg_sql, *params)
+            return [tuple(r) for r in rows]
+    elif _is_turso():
         url = _get_turso_url()
         async with libsql_client.create_client(url=url, auth_token=TURSO_AUTH_TOKEN) as client:
             rs = await client.execute(sql, list(params))
@@ -69,6 +125,27 @@ async def _ensure_column(db, table, column, coltype):
 
 
 async def init_db():
+    if _is_supabase():
+        pool = await get_pg_pool()
+        async with pool.acquire() as conn:
+            await conn.execute("""
+                CREATE TABLE IF NOT EXISTS karta_users (
+                    user_id BIGINT PRIMARY KEY,
+                    lang    TEXT DEFAULT 'uz',
+                    pin     TEXT
+                );
+                CREATE TABLE IF NOT EXISTS karta_cards (
+                    id      BIGSERIAL PRIMARY KEY,
+                    user_id BIGINT NOT NULL,
+                    name    TEXT NOT NULL,
+                    number  TEXT NOT NULL,
+                    holder  TEXT,
+                    created_at TIMESTAMPTZ DEFAULT NOW()
+                );
+                CREATE INDEX IF NOT EXISTS idx_karta_cards_user_id ON karta_cards(user_id);
+            """)
+        return
+
     await _execute("""
         CREATE TABLE IF NOT EXISTS users (
             user_id INTEGER PRIMARY KEY,
